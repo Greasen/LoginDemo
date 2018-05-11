@@ -1,0 +1,250 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    background: #d99c9e;
+}
+
+section {
+    background: #fff;
+    margin: 3% 6% 0 6%;
+    box-shadow: 0 0 50px 3px rgba(3, 0, 0, .4);
+}
+
+.box {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+header > .logo {
+    width: 100%;
+    justify-content: left;
+    padding: 3%;
+    display: flex;
+    margin-left: 9%;
+}
+
+.mother-top {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.motherVideo {
+    width: 800px;
+    height: 510px;
+    display: flex;
+    justify-content: center;
+}
+
+.motherFile {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: url("../images/motherFile.jpg") no-repeat;
+    background-position: right;
+    width: 100%;
+    position: relative;
+}
+
+.mother-heate {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 30%;
+}
+
+.motherFile .motherFile-content {
+    background: #fff;
+    margin: 4%;
+    justify-content: center;
+    display: flex;
+    box-shadow: 0 0 30px #444 inset;
+    margin-top: 40%;
+    height: 400px;
+    position: relative;
+    border-radius: 10px;
+}
+
+.motherFile .motherFile-content > a {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.motherFile .motherFile-content > a > img {
+    justify-content: center;
+    display: flex;
+}
+
+.motherFile .motherFile-content > a > input[type=file] {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.data-img {
+    position: absolute;
+    width: 793px;
+    height: 400px;
+    overflow: hidden;
+    display: none;
+}
+
+.data-img > img {
+    width: 100%;
+}
+
+.mothersduli {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.mothersduli > img {
+    display: flex;
+    justify-content: center;
+}
+
+.mothersText {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+}
+
+.mothersText > textarea {
+    display: flex;
+    justify-content: center;
+    margin: 4%;
+    box-shadow: 0 0 20px #444 inset;
+    padding: 3%;
+    font-size: 28px;
+    color: #999899;
+    border-radius: 10px;
+}
+
+.mothersTextPrompt {
+    position: absolute;
+    right: 8%;
+    bottom: 20%;
+    color: #999899;
+}
+
+footer {
+    margin-bottom: 3%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+footer > .mothersFooter {
+    display: flex;
+    justify-content: center;
+    background: url("../images/mothersFooter.png") center center no-repeat;
+    height: 660px;
+    background-size: 97% 100%;
+    margin: -2px 0 0 -5px;
+    position: relative;
+}
+
+.generate {
+    position: absolute;
+    bottom: 30%;
+    left: 41%;
+}
+
+.mothersFooter > img{display: flex;justify-content: center;align-items: center;height: 150px; margin-top: 35%;}
+.mothersFooter > span{position: absolute;bottom: 18%;left: 37%;font-size: 24px; color: #333;}
+
+/*active*/
+.active-top {
+    background: url("../images/active-top.jpg") no-repeat;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-position: right;
+}
+
+.active-top .active-head {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.active-top .active-head > img {
+    margin: 3% 2% 0 6%;
+}
+
+.active-top .active-text {
+    display: flex;
+    flex-wrap: wrap
+}
+
+.active-top .active-text > h5 {
+    display: flex;
+    width: 100%;
+}
+
+.motherImg {
+    display: flex;
+    justify-content: center;
+    margin-top: 7%;
+}
+
+.motherImg > img {
+    height: 420px;
+    width: auto;
+}
+
+.active-cotent {
+    margin: 3% 0;
+}
+
+.active-text-2 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 10%;
+}
+
+.active-text-2 > textarea {
+    display: flex;
+    justify-content: center;
+    margin: 0 6%;
+    box-shadow: 0 0 20px #444 inset;
+    padding: 3%;
+    font-size: 28px;
+    color: #999899;
+    border-radius: 10px;
+}
+
+.mothersActive{position: absolute;top: 0;width: 100%;display: none;z-index: 99;}

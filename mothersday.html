@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name=”viewport” content=”initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no”>
+    <meta name=”HandheldFriendly” content=”true”>
+    <link rel="stylesheet" href="css/style.min.css">
+    <title>mother's day</title>
+</head>
+<body>
+<section>
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="">
+        </div>
+        <div class="mother-top">
+            <img src="images/top.jpg" alt="">
+        </div>
+    </header>
+    <div class="container">
+        <video class="motherVideo" controls>
+            <source class="" src="images/med.mp4" type="video/mp4" />
+        </video>
+        <div class="motherTalk">
+            <img src="images/motherTalk.jpg" alt="">
+        </div>
+        <div class="motherFile">
+            <div class="mother-heate">
+                <img src="images/mother-heate.jpg" alt="">
+            </div>
+            <div class="motherFile-content">
+                <a href="">
+                    <img src="images/mothers-add.png" alt="">
+                    <input id="uploadFile" type="file">
+                </a>
+                <div class="data-img">
+                    <img class="hide" src="" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="mothersduli">
+            <img src="images/mothersduli.jpg" alt="">
+        </div>
+        <div class="mothersText">
+            <textarea name="" id="area" cols="30" placeholder="请在此处，编写您的母亲节祝福,限制20个字符。"></textarea>
+            <p class="mothersTextPrompt">您还可以输入<span id="text-count">20</span>个字</p>
+        </div>
+    </div>
+
+</section>
+<footer>
+    <div class="mothersFooter">
+        <a id="send" class="generate" onchange="uploadPic()">
+            <img src="images/generate.png" alt="">
+        </a>
+    </div>
+</footer>
+</body>
+
+<div id="qrcode" style="display: none;"></div>
+<form id="jvForm" class="" action="" method="post" enctype="multipart/form-data">
+    <p class="mothersActive">
+        <input style="display: none" type="text" id="myqr" value="test123" />
+        <img id="LCanvasImg_img" src="" alt="">
+    </p>
+</form>
+<script src="js/jquery.form.js"></script>
+<!-- Ajax异步上传图片 -->
+<script type="text/javascript">
+    function uploadPic() {
+        // 上传设置
+        var options = {
+            // 规定把请求发送到那个URL
+            url: "/upload/images.jpg",
+            // 请求方式
+            type: "post",
+            // 服务器响应的数据类型
+            dataType: "json",
+            // 请求成功时执行的回调函数
+            success: function(data, status, xhr) {
+                // 图片显示地址
+                $("#LCanvasImg_img").attr("src", data.path);
+            }
+        };
+        $("#jvForm").ajaxSubmit(options);
+    }
+</script>
+<script src="js/qrcode.js"></script>
+<script src="js/canvas-img.js"></script>
+<script>
+    /**
+     *
+     * 初始化二维码生成插件
+     *
+     */
+    var qrdata = '';
+    var myqr = document.querySelector('#myqr');
+    var qrcode = document.querySelector('#qrcode');
+    var qr = new QRCode(qrcode, {
+        width: 300,
+        height: 300,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.L
+    });
+    function buildQr () {
+        var img = qrcode.querySelector('img');
+        img.onload = function() {
+            qrdata = img.src;
+            main();
+        };
+        qr.makeCode(myqr.value);
+    }
+    var canvasImg = null;
+
+    function main() {
+        //初始化
+        canvasImg = new LCanvasImg({
+            cw: 768,//canvas width
+            ch: 1163,//canvas height
+            iw: '100%',//output img width
+            ih: 'auto',//output img height
+            itype:'images/jpeg',//output img type [image/png,image/jpeg,image/webp]
+            iquality:0.52,////压缩比 默认0.1  范围0.1-1.0 越小压缩率越大
+            display:'none'//canvas display
+        });
+        //资源加载
+        canvasImg.load([{
+            name: 'qr',
+            src: qrdata
+        }, {
+            name: 'bg',
+            src: 'images/active-bg.jpg'
+        }, {
+            name: 'mothersHead',
+            src: 'images/mothersHead.png'
+        },{
+            name:'motherImg',
+            src:'images/motherImg.jpg'
+        }], build);
+    };
+
+    function build() {
+        var farr = [{
+            txt: document.querySelector('#area').value,
+            fontsize: 26,
+            ftop:580,
+            fleft: 100
+        },{
+            txt: 'name',
+            fontsize: 26,
+            ftop: 60,
+            fleft: 200
+        }];
+        canvasImg.addImg({
+            name: 'bg',
+            x: 0,
+            y: 0,
+            width: 768,
+            height: 1163
+        });
+        farr.forEach(function(obj) {
+            canvasImg.addFont(obj);
+        });
+        canvasImg.addImg({
+            name: 'mothersHead',
+            x: 100,
+            y: 40,
+            width: 80,
+            height: 80
+        });
+        canvasImg.addImg({
+            name: 'motherImg',
+            sx: 0,
+            sy: 0,
+            sw: 580,
+            sh: 337,
+            x: 100,
+            y: 150,
+            width: 580,
+            height: 337
+        });
+        canvasImg.addImg({
+            name: 'qr',
+            x: 320,
+            y: 920,
+            width: 130,
+            height: 130
+        });
+        canvasImg.showImg();
+    };
+    function base64_to_jpeg( $base64_string, $output_file ) {
+        $ifp = fopen( $output_file, "wb" );
+        fwrite( $ifp, base64_decode( $base64_string) );
+        fclose( $ifp );
+        return( $output_file );
+    }
+
+    $image = base64_to_jpeg( $my_base64_string, 'tmp.jpg' );
+    window.onload = buildQr;
+    document.getElementById("send").onclick = buildQr;
+</script>
+
+<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.generate').click(function () {
+            $('.mothersActive').css('display','block');
+            $('section,footer').css('display','none');
+        });
+        $('.motherFile-content > a').click(function () {
+            $('.data-img').css('display','block');
+        });
+        $('#uploadFile').change(function () {
+            var current_pic = this.files[0];
+            preview_picture(current_pic);
+            function preview_picture(pic) {
+                var r = new FileReader();
+                r.readAsDataURL(pic);
+                r.onload = function (e) {
+                    $('.motherFile > .motherFile-content > .data-img > img').attr('src',this.result).show()
+                }
+            }
+        })
+    })
+</script>
+<script type="text/javascript">
+    /*字数限制*/
+    $("#area").on("input propertychange", function() {
+        var $this = $(this),
+            _val = $this.val(),
+            count = "";
+        if (_val.length > 20) {
+            $this.val(_val.substring(0, 20));
+        }
+        count = 20 - $this.val().length;
+        $("#text-count").text(count);
+    });
+</script>
+
+</html>
